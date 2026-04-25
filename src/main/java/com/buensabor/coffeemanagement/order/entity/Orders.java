@@ -1,21 +1,22 @@
 package com.buensabor.coffeemanagement.order.entity;
 
+import com.buensabor.coffeemanagement.table.entity.Tables;
 import jakarta.persistence.*;
 import com.buensabor.coffeemanagement.shared.BaseEntity;
-import com.buensabor.coffeemanagement.table.entity.Table;
 import com.buensabor.coffeemanagement.user.entity.User;
+
 
 import java.util.List;
 
 @Entity
-public class Order extends BaseEntity {
+public class Orders extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     @ManyToOne
     @JoinColumn(name = "table_id")
-    private Table table;
+    private Tables table;
 
     @ManyToOne
     @JoinColumn(name = "waiter_id")
@@ -24,12 +25,12 @@ public class Order extends BaseEntity {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;
 
-    public Order() {
+    public Orders() {
     }
 
-    public Order(
+    public Orders(
             OrderStatus status,
-            Table table,
+            Tables table,
             User waiter,
             List<OrderItem> items
     ) {
@@ -47,11 +48,11 @@ public class Order extends BaseEntity {
         this.status = status;
     }
 
-    public Table getTable() {
+    public Tables getTable() {
         return table;
     }
 
-    public void setTable(Table table) {
+    public void setTable(Tables table) {
         this.table = table;
     }
 

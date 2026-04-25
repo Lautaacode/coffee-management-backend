@@ -2,7 +2,7 @@ package com.buensabor.coffeemanagement.ticket.entity;
 
 import com.buensabor.coffeemanagement.payment.entity.Payment;
 import com.buensabor.coffeemanagement.shared.BaseEntity;
-import com.buensabor.coffeemanagement.table.entity.Table;
+import com.buensabor.coffeemanagement.table.entity.Tables;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
@@ -17,19 +17,19 @@ public class Ticket extends BaseEntity {
     private Payment payment;
 
     @ManyToOne
-    private Table table;
+    private Tables tables;
 
     public Ticket() {
     }
 
     public Ticket(
             Double total,
-            Payment payment,
-            Table table
+                  Payment payment,
+                  Tables tables
     ) {
         this.total = total;
         this.payment = payment;
-        this.table = table;
+        this.tables = tables;
     }
 
     public Double getTotal() {
@@ -48,11 +48,11 @@ public class Ticket extends BaseEntity {
         this.payment = payment;
     }
 
-    public Table getTable() {
-        return table;
+    public Tables getTables() {
+        return tables;
     }
 
-    public void setTable(Table table) {
-        this.table = table;
+    public void setTables(Tables tables) {
+        this.tables = tables;
     }
 }

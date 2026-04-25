@@ -2,12 +2,13 @@ package com.buensabor.coffeemanagement.table.entity;
 
 import jakarta.persistence.*;
 import com.buensabor.coffeemanagement.shared.BaseEntity;
-import com.buensabor.coffeemanagement.order.entity.Order;
+import com.buensabor.coffeemanagement.order.entity.Orders;
 
 import java.util.List;
 
 @Entity
-public class Table extends BaseEntity {
+@Table(name = "restaurant_tables")
+public class Tables extends BaseEntity {
 
     private Integer number;
 
@@ -15,15 +16,15 @@ public class Table extends BaseEntity {
     private TableStatus status;
 
     @OneToMany(mappedBy = "table")
-    private List<Order> orders;
+    private List<Orders> orders;
 
-    public Table() {
+    public Tables() {
     }
 
-    public Table(
+    public Tables(
             Integer number,
             TableStatus status,
-            List<Order> orders
+            List<Orders> orders
     ) {
         this.number = number;
         this.status = status;
@@ -46,11 +47,11 @@ public class Table extends BaseEntity {
         this.status = status;
     }
 
-    public List<Order> getOrders() {
+    public List<Orders> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<Orders> orders) {
         this.orders = orders;
     }
 }

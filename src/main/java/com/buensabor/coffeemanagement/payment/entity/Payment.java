@@ -1,8 +1,8 @@
 package com.buensabor.coffeemanagement.payment.entity;
 
+import com.buensabor.coffeemanagement.order.entity.Orders;
 import jakarta.persistence.*;
 import com.buensabor.coffeemanagement.shared.BaseEntity;
-import com.buensabor.coffeemanagement.order.entity.Order;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class Payment extends BaseEntity {
     private PaymentStatus status;
 
     @OneToMany
-    private List<Order> orders;
+    private List<Orders> orders;
 
     public Payment() {
     }
@@ -27,7 +27,7 @@ public class Payment extends BaseEntity {
             Double amount,
             PaymentMethod method,
             PaymentStatus status,
-            List<Order> orders
+            List<Orders > orders
     ) {
         this.amount = amount;
         this.method = method;
@@ -59,11 +59,11 @@ public class Payment extends BaseEntity {
         this.status = status;
     }
 
-    public List<Order> getOrders() {
+    public List<Orders> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<Orders> orders) {
         this.orders = orders;
     }
 }

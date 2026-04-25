@@ -16,7 +16,7 @@ public class OrderItem extends BaseEntity {
     private Double price; // precio congelado
 
     @ManyToOne
-    private Order order;
+    private Orders order;
 
     public OrderItem() {
     }
@@ -25,7 +25,7 @@ public class OrderItem extends BaseEntity {
             Product product,
             Integer quantity,
             Double price,
-            Order order
+            Orders order
     ) {
         this.product = product;
         this.quantity = quantity;
@@ -57,11 +57,11 @@ public class OrderItem extends BaseEntity {
         this.price = price;
     }
 
-    public Order getOrder() {
+    public Orders getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(Orders order) {
         this.order = order;
     }
 }

@@ -28,3 +28,15 @@ incluyendo la administración de usuarios con roles específicos (gerente, cajer
 el registro de pedidos (comandas), el control de ventas y la generación de información útil para la toma de decisiones.
 El objetivo principal es transformar la operación de “Buen Sabor” en un flujo de trabajo ágil,
 confiable y basado en datos, mejorando tanto la experiencia del cliente como la eficiencia interna del equipo.
+
+## Configuración
+
+Copiar el archivo:
+
+application-example.properties
+
+y renombrarlo a:
+
+application-dev.properties
+
+Luego completar con tus credenciales locales.
