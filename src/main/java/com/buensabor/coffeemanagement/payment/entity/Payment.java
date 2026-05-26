@@ -1,14 +1,29 @@
 package com.buensabor.coffeemanagement.payment.entity;
 
 import com.buensabor.coffeemanagement.order.entity.Orders;
-import jakarta.persistence.*;
-import com.buensabor.coffeemanagement.shared.BaseEntity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
+import java.time.LocalDateTime; 
 import java.util.List;
 
 @Entity
-public class Payment extends BaseEntity {
+public class Payment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    
     private Double amount;
 
     @Enumerated(EnumType.STRING)
@@ -20,19 +35,33 @@ public class Payment extends BaseEntity {
     @OneToMany
     private List<Orders> orders;
 
+    
     public Payment() {
     }
 
+    
     public Payment(
             Double amount,
             PaymentMethod method,
             PaymentStatus status,
-            List<Orders > orders
+            List<Orders> orders
     ) {
         this.amount = amount;
         this.method = method;
         this.status = status;
         this.orders = orders;
+    }
+
+    // Automatización de auditoría temporal para los pagos
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
     }
 
     public Double getAmount() {
@@ -65,5 +94,18 @@ public class Payment extends BaseEntity {
 
     public void setOrders(List<Orders> orders) {
         this.orders = orders;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 }

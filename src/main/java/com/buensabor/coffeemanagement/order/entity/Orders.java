@@ -2,14 +2,18 @@ package com.buensabor.coffeemanagement.order.entity;
 
 import com.buensabor.coffeemanagement.table.entity.Tables;
 import jakarta.persistence.*;
-import com.buensabor.coffeemanagement.shared.BaseEntity;
 import com.buensabor.coffeemanagement.user.entity.User;
-
-
 import java.util.List;
 
 @Entity
-public class Orders extends BaseEntity {
+public class Orders {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private java.time.LocalDateTime createdAt = java.time.LocalDateTime.now();
+    private java.time.LocalDateTime updatedAt;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
@@ -38,6 +42,18 @@ public class Orders extends BaseEntity {
         this.table = table;
         this.waiter = waiter;
         this.items = items;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public java.time.LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public java.time.LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
     public OrderStatus getStatus() {

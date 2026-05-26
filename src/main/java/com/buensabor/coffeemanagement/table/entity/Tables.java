@@ -1,14 +1,21 @@
 package com.buensabor.coffeemanagement.table.entity;
 
 import jakarta.persistence.*;
-import com.buensabor.coffeemanagement.shared.BaseEntity;
 import com.buensabor.coffeemanagement.order.entity.Orders;
-
 import java.util.List;
+import java.time.LocalDateTime; 
 
 @Entity
 @Table(name = "restaurant_tables")
-public class Tables extends BaseEntity {
+public class Tables { 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     private Integer number;
 
@@ -18,9 +25,11 @@ public class Tables extends BaseEntity {
     @OneToMany(mappedBy = "table")
     private List<Orders> orders;
 
+    
     public Tables() {
     }
 
+    
     public Tables(
             Integer number,
             TableStatus status,
@@ -29,6 +38,23 @@ public class Tables extends BaseEntity {
         this.number = number;
         this.status = status;
         this.orders = orders;
+    }
+
+    
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    
+    public Long getId() { 
+        return id;
     }
 
     public Integer getNumber() {
@@ -53,5 +79,14 @@ public class Tables extends BaseEntity {
 
     public void setOrders(List<Orders> orders) {
         this.orders = orders;
+    }
+
+    
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 }
