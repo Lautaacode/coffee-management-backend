@@ -18,18 +18,15 @@ public class ProductSupply {
 
     private Double quantity;
 
-    // Constructor vacío obligatorio para JPA/Hibernate
     public ProductSupply() {
     }
 
-    // Constructor con parámetros por si necesitan crear la receta desde el código
     public ProductSupply(Product product, Supply supply, Double quantity) {
         this.product = product;
         this.supply = supply;
         this.quantity = quantity;
     }
 
-    // Getters y Setters necesarios para que Java y la Base de Datos se comuniquen
     public Long getId() {
         return id;
     }
