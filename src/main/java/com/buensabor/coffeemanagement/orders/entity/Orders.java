@@ -1,8 +1,8 @@
-package com.buensabor.coffeemanagement.order.entity;
+package com.buensabor.coffeemanagement.orders.entity;
 
-import com.buensabor.coffeemanagement.table.entity.Tables;
+import com.buensabor.coffeemanagement.tables.entity.Tables;
 import jakarta.persistence.*;
-import com.buensabor.coffeemanagement.shared.BaseEntity;
+import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
 import com.buensabor.coffeemanagement.user.entity.User;
 
 

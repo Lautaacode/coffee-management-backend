@@ -1,6 +1,7 @@
-package com.buensabor.coffeemanagement.shared;
+package com.buensabor.coffeemanagement.shared.entity;
 
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -14,6 +15,7 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @CreatedDate
     @Column(updatable = false,nullable = false)
     private LocalDateTime createdAt;
 

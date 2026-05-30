@@ -1,7 +1,8 @@
 package com.buensabor.coffeemanagement.supply.entity;
 
+import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
 import jakarta.persistence.Entity;
-import com.buensabor.coffeemanagement.shared.BaseEntity;
+
 
 @Entity
 public class Supply extends BaseEntity {

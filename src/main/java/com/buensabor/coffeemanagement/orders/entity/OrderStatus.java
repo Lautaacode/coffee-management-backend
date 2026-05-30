@@ -1,4 +1,4 @@
-package com.buensabor.coffeemanagement.order.entity;
+package com.buensabor.coffeemanagement.orders.entity;
 
 public enum OrderStatus {
     CREATED,

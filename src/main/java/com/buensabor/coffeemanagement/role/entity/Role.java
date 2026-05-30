@@ -2,7 +2,7 @@ package com.buensabor.coffeemanagement.role.entity;
 
 
 import jakarta.persistence.*;
-import com.buensabor.coffeemanagement.shared.BaseEntity;
+import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
 
 @Entity
 public class Role extends BaseEntity {

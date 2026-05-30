@@ -1,8 +1,8 @@
 package com.buensabor.coffeemanagement.ticket.entity;
 
 import com.buensabor.coffeemanagement.payment.entity.Payment;
-import com.buensabor.coffeemanagement.shared.BaseEntity;
-import com.buensabor.coffeemanagement.table.entity.Tables;
+import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
+import com.buensabor.coffeemanagement.tables.entity.Tables;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;

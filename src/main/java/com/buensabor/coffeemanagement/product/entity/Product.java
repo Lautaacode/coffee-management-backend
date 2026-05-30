@@ -3,7 +3,7 @@ package com.buensabor.coffeemanagement.product.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import com.buensabor.coffeemanagement.shared.BaseEntity;
+import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
 
 @Entity
 public class Product extends BaseEntity {

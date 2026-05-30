@@ -1,7 +1,7 @@
 package com.buensabor.coffeemanagement.user.entity;
 
 import com.buensabor.coffeemanagement.role.entity.Role;
-import com.buensabor.coffeemanagement.shared.BaseEntity;
+import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
 import org.jspecify.annotations.Nullable;
