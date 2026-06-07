@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
 import com.buensabor.coffeemanagement.orders.entity.Orders;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,8 +16,8 @@ public class Tables extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TableStatus status;
 
-    @OneToMany(mappedBy = "table")
-    private List<Orders> orders;
+    @OneToMany(mappedBy = "tables")
+    private List<Orders> orders = new ArrayList<>();
 
     public Tables() {
     }

@@ -1,11 +1,14 @@
 package com.buensabor.coffeemanagement.orders.entity;
 
+import com.buensabor.coffeemanagement.orderitem.entity.OrderItem;
 import com.buensabor.coffeemanagement.tables.entity.Tables;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
 import com.buensabor.coffeemanagement.user.entity.User;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,28 +18,33 @@ public class Orders extends BaseEntity {
     private OrderStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "table_id")
-    private Tables table;
-
-    @ManyToOne
     @JoinColumn(name = "waiter_id")
     private User waiter;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderItem> items;
+    @ManyToOne
+    @JoinColumn(name = "tables_id")
+    private Tables tables;
+
+    @JsonManagedReference("order-items")
+    @OneToMany(
+            mappedBy = "order",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<OrderItem> items = new ArrayList<>();
 
     public Orders() {
     }
 
     public Orders(
             OrderStatus status,
-            Tables table,
             User waiter,
+            Tables tables,
             List<OrderItem> items
     ) {
         this.status = status;
-        this.table = table;
         this.waiter = waiter;
+        this.tables = tables;
         this.items = items;
     }
 
@@ -48,20 +56,20 @@ public class Orders extends BaseEntity {
         this.status = status;
     }
 
-    public Tables getTable() {
-        return table;
-    }
-
-    public void setTable(Tables table) {
-        this.table = table;
-    }
-
     public User getWaiter() {
         return waiter;
     }
 
     public void setWaiter(User waiter) {
         this.waiter = waiter;
+    }
+
+    public Tables getTables() {
+        return tables;
+    }
+
+    public void setTables(Tables tables) {
+        this.tables = tables;
     }
 
     public List<OrderItem> getItems() {

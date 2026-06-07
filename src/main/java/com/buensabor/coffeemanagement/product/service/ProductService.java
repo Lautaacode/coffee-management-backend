@@ -1,6 +1,7 @@
 package com.buensabor.coffeemanagement.product.service;
 
 import com.buensabor.coffeemanagement.product.entity.Product;
+import com.buensabor.coffeemanagement.product.entity.ProductCategory;
 
 import java.util.List;
 
@@ -11,6 +12,10 @@ public interface ProductService {
     List<Product> findAll();
 
     List<Product> findActive();
+
+    List<Product> findByCategory(ProductCategory category);
+
+    List<Product> searchByName(String name);
 
     Product findById(Long id);
 

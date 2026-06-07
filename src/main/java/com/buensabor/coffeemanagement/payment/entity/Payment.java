@@ -1,6 +1,8 @@
 package com.buensabor.coffeemanagement.payment.entity;
 
 import com.buensabor.coffeemanagement.orders.entity.Orders;
+import com.buensabor.coffeemanagement.ticket.entity.Ticket;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
 
@@ -17,22 +19,18 @@ public class Payment extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
 
-    @OneToMany
-    private List<Orders> orders;
+    @OneToOne(mappedBy = "payment")
+    @JsonBackReference
+    private Ticket ticket;
 
     public Payment() {
     }
 
-    public Payment(
-            Double amount,
-            PaymentMethod method,
-            PaymentStatus status,
-            List<Orders > orders
-    ) {
+    public Payment(Double amount, PaymentMethod method, PaymentStatus status, Ticket ticket) {
         this.amount = amount;
         this.method = method;
         this.status = status;
-        this.orders = orders;
+        this.ticket = ticket;
     }
 
     public Double getAmount() {
@@ -59,11 +57,11 @@ public class Payment extends BaseEntity {
         this.status = status;
     }
 
-    public List<Orders> getOrders() {
-        return orders;
+    public Ticket getTicket() {
+        return ticket;
     }
 
-    public void setOrders(List<Orders> orders) {
-        this.orders = orders;
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 }

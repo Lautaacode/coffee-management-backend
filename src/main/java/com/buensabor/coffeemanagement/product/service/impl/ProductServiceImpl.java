@@ -1,6 +1,7 @@
 package com.buensabor.coffeemanagement.product.service.impl;
 
 import com.buensabor.coffeemanagement.product.entity.Product;
+import com.buensabor.coffeemanagement.product.entity.ProductCategory;
 import com.buensabor.coffeemanagement.product.repository.ProductRepository;
 import com.buensabor.coffeemanagement.product.service.ProductService;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,23 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findActive() {
         return productRepository.findByActiveTrue();
+    }
+
+    @Override
+    public List<Product> findByCategory(
+            ProductCategory category) {
+
+        return productRepository.findByCategory(
+                category
+        );
+    }
+
+    @Override
+    public List<Product> searchByName(
+            String name) {
+
+        return productRepository
+                .findByNameContainingIgnoreCase(name);
     }
 
     @Override

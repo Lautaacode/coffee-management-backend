@@ -11,4 +11,10 @@ public interface UserService {
     User findById(Long id);
 
     List<User> findAll();
+
+    User update(Long id, User user);
+
+    void delete(Long id);
+
+    void createAdminIfNotExists();
 }

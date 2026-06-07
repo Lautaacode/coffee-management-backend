@@ -20,4 +20,22 @@ public class RoleServiceImpl implements RoleService {
         return repository.findByName(name)
                 .orElseThrow(() -> new RuntimeException("Role not found"));
     }
+    @Override
+    public void createRoleIfNotExist(RoleName roleName) {
+        if (!this.existsByName(roleName)) {
+            Role role = new Role();
+            role.setName(roleName);
+            this.saveRole(role);
+        }
+    }
+
+    @Override
+    public boolean existsByName(RoleName roleName) {
+        return repository.existsByName(roleName);
+    }
+
+    @Override
+    public void saveRole(Role role) {
+        repository.save(role);
+    }
 }

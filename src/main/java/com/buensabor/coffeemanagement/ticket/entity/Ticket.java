@@ -4,6 +4,7 @@ import com.buensabor.coffeemanagement.payment.entity.Payment;
 import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
 import com.buensabor.coffeemanagement.tables.entity.Tables;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
@@ -14,6 +15,7 @@ public class Ticket extends BaseEntity {
     private Double total;
 
     @OneToOne
+    @JoinColumn(name = "payment_id")
     private Payment payment;
 
     @ManyToOne
