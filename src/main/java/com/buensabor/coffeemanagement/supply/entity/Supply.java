@@ -1,6 +1,11 @@
 package com.buensabor.coffeemanagement.supply.entity;
 
+import com.buensabor.coffeemanagement.productsupply.entity.ProductSupply;
+import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
+<<<<<<< HEAD
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -8,6 +13,13 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 
 import java.time.LocalDateTime; 
+=======
+import jakarta.persistence.OneToMany;
+
+import java.util.ArrayList;
+import java.util.List;
+
+>>>>>>> sprint3
 
 @Entity
 public class Supply { 
@@ -21,18 +33,38 @@ public class Supply {
     private LocalDateTime updatedAt;
 
     private String name;
+
     private Integer stock;
+
     private Double cost;
 
+<<<<<<< HEAD
     
     public Supply() {
     }
 
     
     public Supply(String name, Integer stock, Double cost) {
+=======
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "supply")
+    private List<ProductSupply> products = new ArrayList<>();
+
+    public Supply() {
+    }
+
+    public Supply(
+            String name,
+            Integer stock,
+            Double cost,
+            List<ProductSupply> products
+    ) {
+>>>>>>> sprint3
         this.name = name;
         this.stock = stock;
         this.cost = cost;
+        this.products = products;
     }
 
     
@@ -76,6 +108,7 @@ public class Supply {
         this.cost = cost;
     }
 
+<<<<<<< HEAD
     
     public LocalDateTime getCreatedAt() {
         return createdAt;
@@ -85,3 +118,13 @@ public class Supply {
         return updatedAt;
     }
 }
+=======
+    public List<ProductSupply> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductSupply> products) {
+        this.products = products;
+    }
+}
+>>>>>>> sprint3

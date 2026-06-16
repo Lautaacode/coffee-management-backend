@@ -1,6 +1,7 @@
 package com.buensabor.coffeemanagement.product.service;
 
 import com.buensabor.coffeemanagement.product.entity.Product;
+<<<<<<< HEAD
 import com.buensabor.coffeemanagement.product.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -32,4 +33,27 @@ public class ProductService {
         product.setActive(active);
         return productRepository.save(product);
     }
+=======
+import com.buensabor.coffeemanagement.product.entity.ProductCategory;
+
+import java.util.List;
+
+public interface ProductService {
+
+    Product create(Product product);
+
+    List<Product> findAll();
+
+    List<Product> findActive();
+
+    List<Product> findByCategory(ProductCategory category);
+
+    List<Product> searchByName(String name);
+
+    Product findById(Long id);
+
+    Product update(Long id, Product product);
+
+    void delete(Long id);
+>>>>>>> sprint3
 }

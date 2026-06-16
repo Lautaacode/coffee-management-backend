@@ -1,7 +1,11 @@
 package com.buensabor.coffeemanagement.role.entity;
 
 import jakarta.persistence.*;
+<<<<<<< HEAD
 import java.time.LocalDateTime;
+=======
+import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
+>>>>>>> sprint3
 
 @Entity
 public class Role { 

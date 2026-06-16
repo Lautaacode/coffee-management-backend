@@ -1,8 +1,14 @@
 package com.buensabor.coffeemanagement.ticket.entity;
 
 import com.buensabor.coffeemanagement.payment.entity.Payment;
+<<<<<<< HEAD
 import com.buensabor.coffeemanagement.table.entity.Tables;
+=======
+import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
+import com.buensabor.coffeemanagement.tables.entity.Tables;
+>>>>>>> sprint3
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Id;
@@ -27,6 +33,7 @@ public class Ticket {
     private Double total;
 
     @OneToOne
+    @JoinColumn(name = "payment_id")
     private Payment payment;
 
     @ManyToOne

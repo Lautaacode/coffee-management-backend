@@ -6,5 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SupplyRepository extends JpaRepository<Supply, Long> {
+<<<<<<< HEAD
     
+=======
+>>>>>>> sprint3
 }
