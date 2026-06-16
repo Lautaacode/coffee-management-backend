@@ -1,13 +1,6 @@
 package com.buensabor.coffeemanagement.product.repository;
 
 import com.buensabor.coffeemanagement.product.entity.Product;
-<<<<<<< HEAD
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
-=======
 import com.buensabor.coffeemanagement.product.entity.ProductCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -28,5 +21,4 @@ public interface ProductRepository
     List<Product> findByNameContainingIgnoreCase(
             String name
     );
->>>>>>> sprint3
 }

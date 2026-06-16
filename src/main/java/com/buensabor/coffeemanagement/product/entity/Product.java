@@ -1,17 +1,5 @@
-package com.buensabor.coffeemanagement.product.entity; 
+package com.buensabor.coffeemanagement.product.entity;
 
-<<<<<<< HEAD
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-
-import java.time.LocalDateTime;
-=======
 
 import com.buensabor.coffeemanagement.productsupply.entity.ProductSupply;
 import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
@@ -21,21 +9,14 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> sprint3
 
 @Entity
-public class Product {
+public class Product extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    
     private String name;
 
     private String description;
+
     private Double price;
 
     private Integer stock;
@@ -45,11 +26,6 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
 
-<<<<<<< HEAD
-    private Integer stock;
-
-    private boolean active = true; 
-=======
     @JsonIgnore
     @OneToMany(
             mappedBy = "product",
@@ -57,7 +33,6 @@ public class Product {
             orphanRemoval = true
     )
     private List<ProductSupply> supplies = new ArrayList<>();
->>>>>>> sprint3
 
     public Product() {
     }
@@ -78,21 +53,6 @@ public class Product {
         this.active = active;
         this.category = category;
         this.supplies = supplies;
-    }
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {
@@ -135,14 +95,6 @@ public class Product {
         this.active = active;
     }
 
-<<<<<<< HEAD
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-=======
     public ProductCategory getCategory() {
         return category;
     }
@@ -157,6 +109,5 @@ public class Product {
 
     public void setSupplies(List<ProductSupply> supplies) {
         this.supplies = supplies;
->>>>>>> sprint3
     }
 }

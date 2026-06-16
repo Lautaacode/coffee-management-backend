@@ -1,17 +1,14 @@
 package com.buensabor.coffeemanagement.users.entity;
 
 import com.buensabor.coffeemanagement.role.entity.Role;
-<<<<<<< HEAD:src/main/java/com/buensabor/coffeemanagement/user/entity/User.java
-=======
 import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
->>>>>>> sprint3:src/main/java/com/buensabor/coffeemanagement/users/entity/Users.java
 import jakarta.persistence.*;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDateTime;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,22 +16,7 @@ import java.util.Set;
 import static java.util.stream.Collectors.toList;
 
 @Entity
-<<<<<<< HEAD:src/main/java/com/buensabor/coffeemanagement/user/entity/User.java
-@Table(name = "users")
-public class User implements UserDetails { 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-=======
 public class Users extends BaseEntity implements UserDetails {
->>>>>>> sprint3:src/main/java/com/buensabor/coffeemanagement/users/entity/Users.java
 
     private String name;
 
@@ -53,6 +35,7 @@ public class Users extends BaseEntity implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+
     private Set<Role> roles = new HashSet<>();
 
     public Users() {
@@ -74,32 +57,12 @@ public class Users extends BaseEntity implements UserDetails {
         this.name = name;
     }
 
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    public Long getId() { 
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name; 
+        this.name = name;
     }
 
     public String getLastName() {
@@ -107,7 +70,7 @@ public class Users extends BaseEntity implements UserDetails {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName; 
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -115,7 +78,7 @@ public class Users extends BaseEntity implements UserDetails {
     }
 
     public void setEmail(String email) {
-        this.email = email; 
+        this.email = email;
     }
 
     public String getDni() {
@@ -123,7 +86,7 @@ public class Users extends BaseEntity implements UserDetails {
     }
 
     public void setDni(String dni) {
-        this.dni = dni; 
+        this.dni = dni;
     }
 
     public void setPassword(String password) {
@@ -138,15 +101,6 @@ public class Users extends BaseEntity implements UserDetails {
         this.roles = roles;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
