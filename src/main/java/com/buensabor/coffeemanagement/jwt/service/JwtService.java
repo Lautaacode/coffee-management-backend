@@ -1,12 +1,15 @@
-package com.buensabor.coffeemanagement.jwt;
+package com.buensabor.coffeemanagement.jwt.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 public interface JwtService {
+
     String generateToken(UserDetails userDetails);
 
     String extractEmail(String token);
 
-    boolean isTokenValid(String token, UserDetails userDetails);
+    boolean isTokenValid(
+            String token,
+            UserDetails userDetails
+    );
 }

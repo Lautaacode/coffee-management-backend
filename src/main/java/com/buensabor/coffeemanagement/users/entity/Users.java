@@ -1,9 +1,8 @@
-package com.buensabor.coffeemanagement.user.entity;
+package com.buensabor.coffeemanagement.users.entity;
 
 import com.buensabor.coffeemanagement.role.entity.Role;
 import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
 import jakarta.persistence.*;
-import jakarta.persistence.Table;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,8 +16,7 @@ import java.util.Set;
 import static java.util.stream.Collectors.toList;
 
 @Entity
-@Table(name = "users")
-public class User extends BaseEntity implements UserDetails {
+public class Users extends BaseEntity implements UserDetails {
 
     private String name;
 
@@ -40,7 +38,23 @@ public class User extends BaseEntity implements UserDetails {
 
     private Set<Role> roles = new HashSet<>();
 
-    public User() {
+    public Users() {
+    }
+
+    public Users(
+            Set<Role> roles,
+            String password,
+            String dni,
+            String email,
+            String lastName,
+            String name
+    ) {
+        this.roles = roles;
+        this.password = password;
+        this.dni = dni;
+        this.email = email;
+        this.lastName = lastName;
+        this.name = name;
     }
 
     public String getName() {

@@ -12,12 +12,11 @@ import com.buensabor.coffeemanagement.supply.entity.Supply;
 import com.buensabor.coffeemanagement.supply.repository.SupplyRepository;
 import com.buensabor.coffeemanagement.tables.entity.Tables;
 import com.buensabor.coffeemanagement.tables.repository.TablesRepository;
-import com.buensabor.coffeemanagement.user.entity.User;
-import com.buensabor.coffeemanagement.user.repository.UserRepository;
+import com.buensabor.coffeemanagement.users.entity.Users;
+import com.buensabor.coffeemanagement.users.repository.UsersRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,17 +26,22 @@ public class OrdersServiceImpl implements OrdersService {
 
     private final TablesRepository tableRepository;
 
-    private final UserRepository userRepository;
+    private final UsersRepository usersRepository;
 
     private final ProductSupplyRepository productSupplyRepository;
 
     private final SupplyRepository supplyRepository;
 
-    public OrdersServiceImpl(OrdersRepository repository, TablesRepository tableRepository, UserRepository userRepository, ProductSupplyRepository productSupplyRepository, SupplyRepository supplyRepository) {
+    public OrdersServiceImpl(
+            OrdersRepository repository,
+            TablesRepository tableRepository,
+            UsersRepository usersRepository,
+            ProductSupplyRepository productSupplyRepository,
+            SupplyRepository supplyRepository) {
 
         this.repository = repository;
         this.tableRepository = tableRepository;
-        this.userRepository = userRepository;
+        this.usersRepository = usersRepository;
         this.productSupplyRepository = productSupplyRepository;
         this.supplyRepository = supplyRepository;
     }
@@ -47,7 +51,7 @@ public class OrdersServiceImpl implements OrdersService {
 
         Tables table = tableRepository.findById(tableId).orElseThrow();
 
-        User waiter = userRepository.findById(waiterId).orElseThrow();
+        Users waiter = usersRepository.findById(waiterId).orElseThrow();
 
         Orders order = new Orders();
 

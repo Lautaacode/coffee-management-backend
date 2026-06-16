@@ -2,10 +2,11 @@ package com.buensabor.coffeemanagement.orders.entity;
 
 import com.buensabor.coffeemanagement.orderitem.entity.OrderItem;
 import com.buensabor.coffeemanagement.tables.entity.Tables;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
-import com.buensabor.coffeemanagement.user.entity.User;
+import com.buensabor.coffeemanagement.users.entity.Users;
 
 
 import java.util.ArrayList;
@@ -19,18 +20,18 @@ public class Orders extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "waiter_id")
-    private User waiter;
+    private Users waiter;
 
     @ManyToOne
     @JoinColumn(name = "tables_id")
+    @JsonManagedReference("table-orders")
     private Tables tables;
 
-    @JsonManagedReference("order-items")
     @OneToMany(
             mappedBy = "order",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
     )
+    @JsonBackReference("order-items")
     private List<OrderItem> items = new ArrayList<>();
 
     public Orders() {
@@ -38,7 +39,7 @@ public class Orders extends BaseEntity {
 
     public Orders(
             OrderStatus status,
-            User waiter,
+            Users waiter,
             Tables tables,
             List<OrderItem> items
     ) {
@@ -56,11 +57,11 @@ public class Orders extends BaseEntity {
         this.status = status;
     }
 
-    public User getWaiter() {
+    public Users getWaiter() {
         return waiter;
     }
 
-    public void setWaiter(User waiter) {
+    public void setWaiter(Users waiter) {
         this.waiter = waiter;
     }
 

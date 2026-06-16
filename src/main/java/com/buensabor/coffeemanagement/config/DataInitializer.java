@@ -2,7 +2,7 @@ package com.buensabor.coffeemanagement.config;
 
 import com.buensabor.coffeemanagement.role.entity.RoleName;
 import com.buensabor.coffeemanagement.role.service.RoleService;
-import com.buensabor.coffeemanagement.user.service.UserService;
+import com.buensabor.coffeemanagement.users.service.UsersService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Configuration;
 public class DataInitializer implements CommandLineRunner {
 
     private final RoleService roleService;
-    private final UserService userService;
+    private final UsersService usersService;
 
     public DataInitializer(RoleService roleService,
-                           UserService userService) {
+                           UsersService usersService) {
         this.roleService = roleService;
-        this.userService = userService;
+        this.usersService = usersService;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class DataInitializer implements CommandLineRunner {
 
         roleService.createRoleIfNotExist(RoleName.COOK);
 
-        userService.createAdminIfNotExists();
+        usersService.createAdminIfNotExists();
     }
 }
 

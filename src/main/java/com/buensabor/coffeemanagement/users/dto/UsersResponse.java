@@ -1,6 +1,8 @@
-package com.buensabor.coffeemanagement.user.dto;
+package com.buensabor.coffeemanagement.users.dto;
 
-public class CreateUserRequest {
+public class UsersResponse {
+
+    private Long id;
 
     private String name;
 
@@ -10,7 +12,9 @@ public class CreateUserRequest {
 
     private String email;
 
-    private String password;
+    public Long getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -26,9 +30,5 @@ public class CreateUserRequest {
 
     public String getEmail() {
         return email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 }

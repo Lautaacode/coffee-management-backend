@@ -1,11 +1,11 @@
-package com.buensabor.coffeemanagement.user.service.impl;
+package com.buensabor.coffeemanagement.users.service.impl;
 
 import com.buensabor.coffeemanagement.role.entity.Role;
 import com.buensabor.coffeemanagement.role.entity.RoleName;
 import com.buensabor.coffeemanagement.role.repository.RoleRepository;
-import com.buensabor.coffeemanagement.user.entity.User;
-import com.buensabor.coffeemanagement.user.repository.UserRepository;
-import com.buensabor.coffeemanagement.user.service.UserService;
+import com.buensabor.coffeemanagement.users.entity.Users;
+import com.buensabor.coffeemanagement.users.repository.UsersRepository;
+import com.buensabor.coffeemanagement.users.service.UsersService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,70 +13,70 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UsersServiceImpl implements UsersService {
 
-    private final UserRepository userRepository;
+    private final UsersRepository usersRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository,
-                           RoleRepository roleRepository,
-                           PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
+    public UsersServiceImpl(UsersRepository usersRepository,
+                            RoleRepository roleRepository,
+                            PasswordEncoder passwordEncoder) {
+        this.usersRepository = usersRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public User create(User user) {
+    public Users create(Users user) {
 
-        if (userRepository.existsByEmail(user.getEmail())) {
+        if (usersRepository.existsByEmail(user.getEmail())) {
             throw new RuntimeException("Email already exists");
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        return userRepository.save(user);
+        return usersRepository.save(user);
     }
 
     @Override
-    public User findById(Long id) {
-        return userRepository.findById(id)
+    public Users findById(Long id) {
+        return usersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<Users> findAll() {
+        return usersRepository.findAll();
     }
 
     @Override
-    public User update(Long id, User user) {
+    public Users update(Long id, Users users) {
 
-        User existing = findById(id);
+        Users existing = findById(id);
 
-        existing.setName(user.getName());
-        existing.setLastName(user.getLastName());
-        existing.setDni(user.getDni());
-        existing.setEmail(user.getEmail());
+        existing.setName(users.getName());
+        existing.setLastName(users.getLastName());
+        existing.setDni(users.getDni());
+        existing.setEmail(users.getEmail());
 
-        if (user.getPassword() != null &&
-                !user.getPassword().isBlank()) {
+        if (users.getPassword() != null &&
+                !users.getPassword().isBlank()) {
 
             existing.setPassword(
-                    passwordEncoder.encode(user.getPassword())
+                    passwordEncoder.encode(users.getPassword())
             );
         }
 
-        return userRepository.save(existing);
+        return usersRepository.save(existing);
     }
 
     @Override
     public void delete(Long id) {
 
-        User user = findById(id);
+        Users users = findById(id);
 
-        userRepository.delete(user);
+        usersRepository.delete(users);
     }
 
     @Override
@@ -84,14 +84,14 @@ public class UserServiceImpl implements UserService {
 
         String adminEmail = "admin@coffee.com";
 
-        if (userRepository.existsByEmail(adminEmail)) {
+        if (usersRepository.existsByEmail(adminEmail)) {
             return;
         }
 
         Role adminRole = roleRepository.findByName(RoleName.SUPER_ADMIN)
                 .orElseThrow(() -> new RuntimeException("Role SUPER_ADMIN not found"));
 
-        User admin = new User();
+        Users admin = new Users();
 
         admin.setName("Super");
         admin.setLastName("Admin");
@@ -104,6 +104,6 @@ public class UserServiceImpl implements UserService {
 
         admin.setRoles(Set.of(adminRole));
 
-        userRepository.save(admin);
+        usersRepository.save(admin);
     }
 }

@@ -2,16 +2,20 @@ package com.buensabor.coffeemanagement.productsupply.entity;
 
 import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
 import com.buensabor.coffeemanagement.supply.entity.Supply;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import com.buensabor.coffeemanagement.product.entity.Product;
 
 @Entity
 public class ProductSupply extends BaseEntity {
 
+    @JsonBackReference("product-productSupply")
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @JsonBackReference("supply-productSupply")
     @ManyToOne
     @JoinColumn(name = "supply_id")
     private Supply supply;

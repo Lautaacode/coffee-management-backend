@@ -2,6 +2,7 @@ package com.buensabor.coffeemanagement.supply.entity;
 
 import com.buensabor.coffeemanagement.productsupply.entity.ProductSupply;
 import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -19,10 +20,9 @@ public class Supply extends BaseEntity {
 
     private Double cost;
 
-    @JsonManagedReference("supply-productSupply")
-    @OneToMany(
-            mappedBy = "supply"
-    )
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "supply")
     private List<ProductSupply> products = new ArrayList<>();
 
     public Supply() {

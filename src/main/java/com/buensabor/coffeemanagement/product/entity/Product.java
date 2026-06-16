@@ -3,6 +3,7 @@ package com.buensabor.coffeemanagement.product.entity;
 
 import com.buensabor.coffeemanagement.productsupply.entity.ProductSupply;
 import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -25,7 +26,7 @@ public class Product extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
 
-    @JsonManagedReference("product-productSupply")
+    @JsonIgnore
     @OneToMany(
             mappedBy = "product",
             cascade = CascadeType.ALL,

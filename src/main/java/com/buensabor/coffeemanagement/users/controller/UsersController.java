@@ -1,7 +1,7 @@
-package com.buensabor.coffeemanagement.user.controller;
+package com.buensabor.coffeemanagement.users.controller;
 
-import com.buensabor.coffeemanagement.user.entity.User;
-import com.buensabor.coffeemanagement.user.service.UserService;
+import com.buensabor.coffeemanagement.users.entity.Users;
+import com.buensabor.coffeemanagement.users.service.UsersService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -10,28 +10,28 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
-public class UserController {
+public class UsersController {
 
-    private final UserService service;
+    private final UsersService service;
 
-    public UserController(UserService service) {
+    public UsersController(UsersService service) {
         this.service = service;
     }
 
     @PostMapping
     @PreAuthorize("hasAnyRole('SUPER_ADMIN','MANAGER')")
-    public ResponseEntity<User> create(
-            @RequestBody User user
+    public ResponseEntity<Users> create(
+            @RequestBody Users users
     ) {
 
         return ResponseEntity.ok(
-                service.create(user)
+                service.create(users)
         );
     }
 
     @GetMapping
     @PreAuthorize("hasAnyRole('SUPER_ADMIN','MANAGER')")
-    public ResponseEntity<List<User>> findAll() {
+    public ResponseEntity<List<Users>> findAll() {
 
         return ResponseEntity.ok(
                 service.findAll()
@@ -40,7 +40,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('SUPER_ADMIN','MANAGER')")
-    public ResponseEntity<User> findById(
+    public ResponseEntity<Users> findById(
             @PathVariable Long id
     ) {
 
@@ -51,13 +51,13 @@ public class UserController {
 
     @PatchMapping("/{id}")
     @PreAuthorize("hasAnyRole('SUPER_ADMIN','MANAGER')")
-    public ResponseEntity<User> update(
+    public ResponseEntity<Users> update(
             @PathVariable Long id,
-            @RequestBody User user
+            @RequestBody Users users
     ) {
 
         return ResponseEntity.ok(
-                service.update(id, user)
+                service.update(id, users)
         );
     }
 

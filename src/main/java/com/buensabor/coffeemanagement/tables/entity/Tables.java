@@ -1,5 +1,6 @@
 package com.buensabor.coffeemanagement.tables.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import com.buensabor.coffeemanagement.shared.entity.BaseEntity;
 import com.buensabor.coffeemanagement.orders.entity.Orders;
@@ -16,7 +17,11 @@ public class Tables extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TableStatus status;
 
-    @OneToMany(mappedBy = "tables")
+    @OneToMany(
+            mappedBy = "tables",
+            cascade = CascadeType.ALL
+    )
+    @JsonBackReference("table-orders")
     private List<Orders> orders = new ArrayList<>();
 
     public Tables() {
